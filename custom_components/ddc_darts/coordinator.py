@@ -14,7 +14,7 @@ class DDRDartsCoordinator(DataUpdateCoordinator):
         super().__init__(
             hass,
             _LOGGER,
-            name="DDR Darts",
+            name="DDC Darts",
             update_interval=timedelta(seconds=DEFAULT_POLL_INTERVAL),
         )
         self._token = token
@@ -26,11 +26,11 @@ class DDRDartsCoordinator(DataUpdateCoordinator):
                 url = f"{DEFAULT_API_URL}?action=ha_events&token={self._token}&last_id={self._last_id}"
                 async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp:
                     if resp.status == 401:
-                        _LOGGER.error("DDR Darts: Ungültiger Token")
+                        _LOGGER.error("DDC Darts: Ungültiger Token")
                         return {"events": [], "error": "invalid_token"}
                     data = await resp.json()
         except Exception as err:
-            _LOGGER.warning("DDR Darts: API-Fehler: %s", err)
+            _LOGGER.warning("DDC Darts: API-Fehler: %s", err)
             return {"events": [], "error": str(err)}
 
         events = data.get("events", [])

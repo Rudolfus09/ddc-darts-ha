@@ -24,7 +24,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         for event in events:
             rgb = event.get("rgb")
             if rgb:
-                _LOGGER.info("DDR Darts event: %s by %s → color %s", event.get("event_type"), event.get("player"), rgb)
+                _LOGGER.info("DDC Darts event: %s by %s → color %s", event.get("event_type"), event.get("player"), rgb)
                 hass.async_create_task(controller.flash_color(rgb))
 
     coordinator.async_add_listener(_on_update)

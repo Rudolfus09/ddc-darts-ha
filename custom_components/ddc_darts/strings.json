@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "title": "DDR Darts verbinden",
+        "title": "DDC Darts verbinden",
         "description": "Gib den Verbindungscode ein, den du auf darts-drinks.de unter Live-Regeln → Home Assistant findest.",
         "data": {
           "token": "Verbindungscode"
@@ -22,13 +22,13 @@
       "connection_failed": "Verbindung zu darts-drinks.de fehlgeschlagen."
     },
     "abort": {
-      "already_configured": "DDR Darts ist bereits eingerichtet."
+      "already_configured": "DDC Darts ist bereits eingerichtet."
     }
   },
   "options": {
     "step": {
       "init": {
-        "title": "DDR Darts konfigurieren",
+        "title": "DDC Darts konfigurieren",
         "data": {
           "lights": "Lichter",
           "flash_duration": "Effektdauer (Sekunden)"

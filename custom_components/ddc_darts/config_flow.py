@@ -31,7 +31,7 @@ class DDRDartsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             await self._register_connection(user_input.get(CONF_LIGHTS, []))
             return self.async_create_entry(
-                title="DDR Darts",
+                title="DDC Darts",
                 data={CONF_TOKEN: self._token},
                 options={
                     CONF_LIGHTS: user_input.get(CONF_LIGHTS, []),

@@ -22,7 +22,7 @@ class DDRDartsLastEventSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator: DDRDartsCoordinator, entry: ConfigEntry):
         super().__init__(coordinator)
         self._attr_unique_id = f"{entry.entry_id}_last_event"
-        self._attr_name = "DDR Darts Letzter Event"
+        self._attr_name = "DDC Darts Letzter Event"
         self._last_event_type = None
         self._last_player = None
 
@@ -50,7 +50,7 @@ class DDRDartsConnectionSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator: DDRDartsCoordinator, entry: ConfigEntry):
         super().__init__(coordinator)
         self._attr_unique_id = f"{entry.entry_id}_connection"
-        self._attr_name = "DDR Darts Verbindung"
+        self._attr_name = "DDC Darts Verbindung"
 
     @property
     def native_value(self):

@@ -1,6 +1,6 @@
 {
-  "domain": "ddr_darts",
-  "name": "DDR Darts",
+  "domain": "ddc_darts",
+  "name": "DDC Darts",
   "codeowners": [],
   "config_flow": true,
   "documentation": "https://darts-drinks.de",

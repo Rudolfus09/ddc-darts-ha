@@ -1,4 +1,4 @@
-# DDR Darts – Home Assistant Integration
+# DDC Darts – Home Assistant Integration
 
 Steuert Philips Hue (und andere) Lichter automatisch bei Live-Darts-Events auf [darts-drinks.de](https://darts-drinks.de).
 
@@ -13,12 +13,12 @@ Steuert Philips Hue (und andere) Lichter automatisch bei Live-Darts-Events auf [
 
 1. HACS öffnen → Integrationen → ⋮ → Benutzerdefinierte Repositories
 2. Repository-URL einfügen und Kategorie "Integration" wählen
-3. "DDR Darts" installieren
+3. "DDC Darts" installieren
 4. Home Assistant neu starten
 
 ## Einrichtung
 
-1. Einstellungen → Geräte & Dienste → Integration hinzufügen → "DDR Darts"
+1. Einstellungen → Geräte & Dienste → Integration hinzufügen → "DDC Darts"
 2. Verbindungscode eingeben (findest du auf darts-drinks.de → Live-Regeln → Home Assistant)
 3. Lichter auswählen, die bei Events reagieren sollen
 4. Effektdauer einstellen (Standard: 10 Sekunden)

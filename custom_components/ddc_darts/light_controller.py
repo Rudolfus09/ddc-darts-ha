@@ -29,7 +29,7 @@ class LightController:
         try:
             # 1. Snapshot current state
             await self._hass.services.async_call("scene", "create", {
-                "scene_id": "ddr_darts_restore",
+                "scene_id": "ddc_darts_restore",
                 "snapshot_entities": self._lights,
             })
             await asyncio.sleep(0.3)
@@ -47,10 +47,10 @@ class LightController:
 
             # 4. Restore
             await self._hass.services.async_call("scene", "turn_on", {
-                "entity_id": "scene.ddr_darts_restore",
+                "entity_id": "scene.ddc_darts_restore",
             })
 
         except Exception as err:
-            _LOGGER.error("DDR Darts flash error: %s", err)
+            _LOGGER.error("DDC Darts flash error: %s", err)
         finally:
             self._active = False
