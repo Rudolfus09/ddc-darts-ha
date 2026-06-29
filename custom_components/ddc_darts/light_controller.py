@@ -57,11 +57,13 @@ class LightController:
             else:
                 await self._effect_solid(rgb, duration, brightness)
 
-            await self._restore_scene()
-
         except Exception as err:
             _LOGGER.error("DDC Darts effect error: %s", err)
         finally:
+            try:
+                await self._restore_scene()
+            except Exception as err:
+                _LOGGER.error("DDC Darts restore error: %s", err)
             self._active = False
 
     async def _effect_solid(self, rgb, duration, brightness):
