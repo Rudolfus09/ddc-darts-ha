@@ -7,17 +7,15 @@ _LOGGER = logging.getLogger(__name__)
 
 class LightController:
 
-    def __init__(self, hass: HomeAssistant, light_entities: list[str], flash_duration: int):
+    def __init__(self, hass: HomeAssistant, light_entities: list[str]):
         self._hass = hass
         self._lights = light_entities
-        self._flash_duration = flash_duration
         self._active = False
 
-    def update_config(self, light_entities: list[str], flash_duration: int):
+    def update_config(self, light_entities: list[str]):
         self._lights = light_entities
-        self._flash_duration = flash_duration
 
-    async def flash_color(self, rgb: list[int]):
+    async def flash_color(self, rgb: list[int], duration: int = 10):
         if not self._lights or not rgb or len(rgb) != 3:
             return
 
@@ -27,14 +25,12 @@ class LightController:
 
         self._active = True
         try:
-            # 1. Snapshot current state
             await self._hass.services.async_call("scene", "create", {
                 "scene_id": "ddc_darts_restore",
                 "snapshot_entities": self._lights,
             })
             await asyncio.sleep(0.3)
 
-            # 2. Set winner color
             for entity_id in self._lights:
                 await self._hass.services.async_call("light", "turn_on", {
                     "entity_id": entity_id,
@@ -42,10 +38,8 @@ class LightController:
                     "brightness": 255,
                 })
 
-            # 3. Wait
-            await asyncio.sleep(self._flash_duration)
+            await asyncio.sleep(duration)
 
-            # 4. Restore
             await self._hass.services.async_call("scene", "turn_on", {
                 "entity_id": "scene.ddc_darts_restore",
             })

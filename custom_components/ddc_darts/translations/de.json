@@ -13,8 +13,7 @@
         "description": "Wähle die Lichter oder Bereiche, die bei Darts-Events reagieren sollen.",
         "data": {
           "lights": "Lichter",
-          "flash_duration": "Effektdauer (Sekunden)"
-        }
+                  }
       }
     },
     "error": {
@@ -31,8 +30,7 @@
         "title": "DDC Darts konfigurieren",
         "data": {
           "lights": "Lichter",
-          "flash_duration": "Effektdauer (Sekunden)"
-        }
+                  }
       }
     }
   }

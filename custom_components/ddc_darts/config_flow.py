@@ -2,10 +2,10 @@ import aiohttp
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.helpers import selector
-from .const import DOMAIN, DEFAULT_API_URL, DEFAULT_FLASH_DURATION, CONF_TOKEN, CONF_LIGHTS, CONF_FLASH_DURATION
+from .const import DOMAIN, DEFAULT_API_URL, CONF_TOKEN, CONF_LIGHTS
 
 
-class DDRDartsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class DDCDartsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     def __init__(self):
@@ -33,10 +33,7 @@ class DDRDartsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(
                 title="DDC Darts",
                 data={CONF_TOKEN: self._token},
-                options={
-                    CONF_LIGHTS: user_input.get(CONF_LIGHTS, []),
-                    CONF_FLASH_DURATION: user_input.get(CONF_FLASH_DURATION, DEFAULT_FLASH_DURATION),
-                },
+                options={CONF_LIGHTS: user_input.get(CONF_LIGHTS, [])},
             )
 
         return self.async_show_form(
@@ -44,9 +41,6 @@ class DDRDartsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema({
                 vol.Required(CONF_LIGHTS): selector.EntitySelector(
                     selector.EntitySelectorConfig(domain="light", multiple=True)
-                ),
-                vol.Optional(CONF_FLASH_DURATION, default=DEFAULT_FLASH_DURATION): vol.All(
-                    int, vol.Range(min=1, max=60)
                 ),
             }),
         )
@@ -78,10 +72,10 @@ class DDRDartsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     @staticmethod
     def async_get_options_flow(config_entry):
-        return DDRDartsOptionsFlow(config_entry)
+        return DDCDartsOptionsFlow(config_entry)
 
 
-class DDRDartsOptionsFlow(config_entries.OptionsFlow):
+class DDCDartsOptionsFlow(config_entries.OptionsFlow):
     def __init__(self, config_entry):
         self._config_entry = config_entry
 
@@ -96,9 +90,5 @@ class DDRDartsOptionsFlow(config_entries.OptionsFlow):
                 vol.Required(CONF_LIGHTS, default=current.get(CONF_LIGHTS, [])): selector.EntitySelector(
                     selector.EntitySelectorConfig(domain="light", multiple=True)
                 ),
-                vol.Optional(
-                    CONF_FLASH_DURATION,
-                    default=current.get(CONF_FLASH_DURATION, DEFAULT_FLASH_DURATION),
-                ): vol.All(int, vol.Range(min=1, max=60)),
             }),
         )
