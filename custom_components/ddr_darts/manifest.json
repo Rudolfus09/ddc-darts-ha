@@ -1,0 +1,11 @@
+{
+  "domain": "ddr_darts",
+  "name": "DDR Darts",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://darts-drinks.de",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "version": "1.0.0",
+  "requirements": ["aiohttp>=3.8.0"]
+}
