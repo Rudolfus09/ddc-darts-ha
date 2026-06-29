@@ -12,8 +12,8 @@
         "title": "Lichter auswählen",
         "description": "Wähle die Lichter oder Bereiche, die bei Darts-Events reagieren sollen.",
         "data": {
-          "lights": "Lichter",
-                  }
+          "lights": "Lichter"
+        }
       }
     },
     "error": {
@@ -29,8 +29,8 @@
       "init": {
         "title": "DDC Darts konfigurieren",
         "data": {
-          "lights": "Lichter",
-                  }
+          "lights": "Lichter"
+        }
       }
     }
   }
