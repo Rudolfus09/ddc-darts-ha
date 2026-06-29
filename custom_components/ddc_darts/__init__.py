@@ -18,7 +18,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     coordinator = DDRDartsCoordinator(hass, token)
     controller = LightController(hass, lights)
 
-    async def _on_update():
+    def _on_update():
         events = coordinator.data.get("events", []) if coordinator.data else []
         for event in events:
             rgb = event.get("rgb")
