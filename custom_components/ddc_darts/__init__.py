@@ -21,11 +21,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     def _on_update():
         events = coordinator.data.get("events", []) if coordinator.data else []
         for event in events:
+            effect = event.get("effect", {})
             rgb = event.get("rgb")
-            if rgb:
-                duration = event.get("duration", 10)
-                _LOGGER.info("DDC Darts event: %s by %s → color %s (%ds)", event.get("event_type"), event.get("player"), rgb, duration)
-                hass.async_create_task(controller.flash_color(rgb, duration))
+            effect_type = effect.get("effect_type", "solid")
+            if effect_type == "off" or rgb or effect.get("color_sequence"):
+                _LOGGER.info("DDC Darts event: %s by %s → %s", event.get("event_type"), event.get("player"), effect_type)
+                hass.async_create_task(controller.execute_effect(rgb, effect))
 
     coordinator.async_add_listener(_on_update)
 
